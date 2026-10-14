@@ -1,12 +1,17 @@
 package MidTerm27710;
 
-class Base {
+import java.util.IdentityHashMap;
+
+abstract class Base {
     public Base() {
         show();    // ⚠️ 父类构造器里调用方法
     }
+
     public void show() {
         System.out.println("Base.show()");
     }
+
+    abstract void p();
 }
 
 class Derived extends Base {
@@ -16,6 +21,21 @@ class Derived extends Base {
     public void show() {
         System.out.println("Derived.show(), value = " + value);
     }
+
+    @Override
+    void p() {
+        System.out.println("implement");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) return false;
+        if (o == this) return true;
+        if (this.getClass() != o.getClass()) return false;
+        Derived derived = (Derived) o;
+        return this.value == derived.value;
+    }
+
 }
 
 public class Bse {
